@@ -30,3 +30,5 @@ firebase-debug.log
 .env
 .eslintcache
 packages/matrix-crdt/README.md
+
+.history

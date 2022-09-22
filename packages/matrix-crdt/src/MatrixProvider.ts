@@ -1,7 +1,7 @@
 import { MatrixClient } from "matrix-js-sdk";
 import { event, lifecycle } from "vscode-lib";
 import * as awarenessProtocol from "y-protocols/awareness";
-import * as Y from "yjs";
+// import * as Y from "yjs";
 import { signObject, verifyObject } from "./util/authUtil";
 import { MatrixMemberReader } from "./memberReader/MatrixMemberReader";
 import { MatrixReader, MatrixReaderOptions } from "./reader/MatrixReader";
@@ -54,6 +54,10 @@ const DEFAULT_OPTIONS = {
  * }
  */
 export type MatrixProviderOptions = Partial<typeof DEFAULT_OPTIONS>;
+
+const Y = (<any>window).Yjs
+
+console.log('MP 111j')
 
 /**
  * Syncs a Matrix room with a Yjs document.
@@ -135,7 +139,8 @@ export class MatrixProvider extends lifecycle.Disposable {
    * @memberof MatrixProvider
    */
   public constructor(
-    private doc: Y.Doc,
+    // private doc: Y.Doc,
+    private doc: any,
     private matrixClient: MatrixClient,
 
     private room:
@@ -347,7 +352,7 @@ export class MatrixProvider extends lifecycle.Disposable {
 
     let initialLocalState = Y.encodeStateAsUpdate(this.doc);
     const initialLocalStateVector =
-      Y.encodeStateVectorFromUpdate(initialLocalState);
+    Y.encodeStateVectorFromUpdate(initialLocalState);
     const deleteSetOnlyUpdate = Y.diffUpdate(
       initialLocalState,
       initialLocalStateVector
@@ -455,8 +460,10 @@ export class MatrixProvider extends lifecycle.Disposable {
 
 // adapted from yjs snapshot equals function
 function snapshotContainsAllDeletes(
-  newSnapshot: Y.Snapshot,
-  oldSnapshot: Y.Snapshot
+  // newSnapshot: Y.Snapshot,
+  newSnapshot: any,
+  // oldSnapshot: Y.Snapshot
+  oldSnapshot: any
 ) {
   // only contains deleteSet
   for (const [client, dsitems1] of oldSnapshot.ds.clients.entries()) {
