@@ -57,7 +57,7 @@ export type MatrixProviderOptions = Partial<typeof DEFAULT_OPTIONS>;
 
 const Y = (<any>window).Yjs
 
-console.log('MP 111j')
+console.log('MP 111l')
 
 /**
  * Syncs a Matrix room with a Yjs document.
